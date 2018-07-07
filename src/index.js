@@ -4,13 +4,15 @@ const { Prisma } = require("prisma-binding");
 const Query = require("./resolvers/Query");
 const Mutation = require("./resolvers/Mutation");
 const AuthPayload = require("./resolvers/AuthPayload");
+const Feed = require("./resolvers/Feed");
 
 // https://www.howtographql.com/graphql-js/1-getting-started/
 
 const resolvers = {
   Query,
   Mutation,
-  AuthPayload
+  AuthPayload,
+  Feed
 };
 
 const server = new GraphQLServer({

@@ -57,21 +57,34 @@ function post(parent, args, context, info) {
   );
 }
 
-// updateLink: (root, { id, url, description }) => {
-//   let link = Object.assign({}, links.find(link => link.id === id), {
-//     url,
-//     description
-//   });
-//   links = [...links.filter(link => link.id !== id), link];
-//   return link;
-// },
-// deleteLink: (root, { id }) => {
-//   links = [...links.filter(link => link.id !== id)];
-//   return;
-// }
+function updateLink(parent, args, context, info) {
+  const userId = getUserId(context);
+  return context.db.mutation.updateLink(
+    {
+      where: { id: args.id },
+      data: {
+        url: args.url,
+        description: args.description,
+        postedBy: { connect: { id: userId } }
+      }
+    },
+    info
+  );
+}
+
+function deleteLink(parent, args, context, info) {
+  return context.db.mutation.deleteLink(
+    {
+      where: { id: args.id }
+    },
+    info
+  );
+}
 
 module.exports = {
   signup,
   login,
-  post
+  post,
+  updateLink,
+  deleteLink
 };
