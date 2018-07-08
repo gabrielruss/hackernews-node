@@ -5,6 +5,7 @@ const Query = require("./resolvers/Query");
 const Mutation = require("./resolvers/Mutation");
 const AuthPayload = require("./resolvers/AuthPayload");
 const Feed = require("./resolvers/Feed");
+const Subscription = require("./resolvers/Subscription");
 
 // https://www.howtographql.com/graphql-js/1-getting-started/
 
@@ -12,7 +13,8 @@ const resolvers = {
   Query,
   Mutation,
   AuthPayload,
-  Feed
+  Feed,
+  Subscription
 };
 
 const server = new GraphQLServer({
